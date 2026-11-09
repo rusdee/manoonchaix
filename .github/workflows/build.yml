@@ -15,13 +15,16 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '18'
+          node-version: '22'
 
       - name: Install Keyman Compiler
         run: npm install -g @keymanapp/kmc
 
       - name: Build KMP Package
-        run: kmc build ThaiKeyboardRulesForManoonchaiX.kmn
+        run: |
+          KMN_FILE=$(ls *.kmn | head -n 1)
+          echo "Building file: $KMN_FILE"
+          kmc build "$KMN_FILE"
 
       - name: Upload KMP Artifact
         uses: actions/upload-artifact@v4
