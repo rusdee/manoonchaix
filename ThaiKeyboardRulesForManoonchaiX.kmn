@@ -1,5 +1,6 @@
 c =====================================================================
 c Keyman Keyboard Source File - Thai keyboard rules for ManoonchaiX
+c Generated directly from Manoonchai~x JSON layout
 c =====================================================================
 
 store(&NAME) 'ManoonchaiX'
@@ -10,114 +11,138 @@ store(&KEYBOARDVERSION) '1.0'
 begin Unicode > use(main)
 
 c ---------------------------------------------------------------------
-c SECTION 1: Group Definitions (การจัดกลุ่มอักขระเพื่อนำไปใช้ในกฎ)
+c SECTION 1: Group Definitions (การจัดกลุ่มอักขระ)
 c ---------------------------------------------------------------------
 
-c พยัญชนะภาษาไทยทั้งหมด (ก ถึง ฮ)
 store(Consonant)            'ก'..'ฮ'
-
-c สระบน: ไม้หันอากาศ, สระอิ, สระอี, สระอึ, สระอือ, ไม้ไต่คู้
-store(UpperVowel)           U+0E31 U+0E34..U+0E37 U+0E47
-
-c สระล่าง และ พินทุ (จุดใต้พยัญชนะบาลี): สระอุ, สระู, พินทุ
-store(LowerVowel)           U+0E38..U+0E3A
-
-c วรรณยุกต์ 4 รูป: ไม้อีก, ไม้โท, ไม้ตรี, ไม้จัตวา
-store(Tone)                 U+0E48..U+0E4B
-
-c เครื่องหมายการันต์ (ไม้ทัณฑฆาต)
-store(Karan)                U+0E4C
-
-c เครื่องหมายบน: การันต์ (์), นฤคหิต/หยาดน้ำค้าง (ํ), ยามักการ (๎)
+store(UpperVowel)           U+0E31 U+0E34 U+0E35 U+0E36 U+0E37 U+0E47
+store(LowerVowel)           U+0E38 U+0E39 U+0E3A
+store(Tone)                 U+0E48 U+0E49 U+0E4A U+0E4B
 store(AboveMark)            U+0E4C U+0E4D U+0E4E
-
-c สระหน้า: สระเอ, สระแอ, สระโอ, สระใอ, สระไอ
-store(LeadingVowel)         U+0E40..U+0E44
-
-c เครื่องหมายพิเศษที่ไม่สามารถใส่สระหรือวรรณยุกต์ต่อท้ายได้:
-c ไม้ยมก (ๆ U+0E46), ฟองมัน (๏ U+0E4F), อังคาสคู่ (๚ U+0E5A), โคมูตร (๛ U+0E5B), ไปยาลใหญ่/อังคาสเดี่ยว (ฯ U+0E2F)
+store(LeadingVowel)         U+0E40 U+0E41 U+0E42 U+0E43 U+0E44
 store(SpecialPunctuation)   U+0E46 U+0E4F U+0E5A U+0E5B U+0E2F
-
-c รวมสระบน สระล่าง วรรณยุกต์ และเครื่องหมายบนทั้งหมด
-store(AllDiacritics)        store(UpperVowel) store(LowerVowel) store(Tone) store(AboveMark)
-
-c รวมสระและเครื่องหมายบน/ล่างทั้งหมด ยกเว้นวรรณยุกต์
-store(DiacriticsExceptTone) store(UpperVowel) store(LowerVowel) store(AboveMark)
+store(AllDiacritics)        U+0E31 U+0E34 U+0E35 U+0E36 U+0E37 U+0E47 U+0E38 U+0E39 U+0E3A U+0E48 U+0E49 U+0E4A U+0E4B U+0E4C U+0E4D U+0E4E
 
 
 c ---------------------------------------------------------------------
-c SECTION 2: Main Rules Group (กฎการแปลงและควบคุมการพิมพ์)
+c SECTION 2: Layout & Main Rules Group (ผังแป้นพิมพ์ + กฎประมวลผล)
 c ---------------------------------------------------------------------
 group(main) using keys
 
-c =====================================================================
-c RULE SET 1: แปลงสระอา (า) เป็น ลากข้างยาว (ๅ) เมื่อพิมพ์หลัง ฤ (U+0E24) หรือ ฦ (U+0E25)
-c =====================================================================
+c --- 2.1 ผังแป้นพิมพ์ Manoonchai~x (Unshift / Normal Keys) ---
++ [K_Q] > 'ใ'
++ [K_W] > 'ต'
++ [K_E] > 'ห'
++ [K_R] > 'ล'
++ [K_T] > 'ส'
++ [K_Y] > 'ป'
++ [K_U] > U+0E31
++ [K_I] > 'ก'
++ [K_O] > U+0E34
++ [K_P] > 'บ'
++ [K_LBRKT] > U+0E47
++ [K_RBRKT] > 'ฬ'
 
-c พิมพ์ ฤ + า -> ฤๅ
++ [K_A] > 'ง'
++ [K_S] > 'เ'
++ [K_D] > 'ร'
++ [K_F] > 'น'
++ [K_G] > 'ม'
++ [K_H] > 'อ'
++ [K_J] > 'า'
++ [K_K] > U+0E48
++ [K_L] > U+0E49
++ [K_COLON] > 'ว'
++ [K_QUOTE] > U+0E37
++ [K_BKSLASH] > 'ฯ'
+
++ [K_Z] > U+0E38
++ [K_X] > 'ไ'
++ [K_C] > 'ท'
++ [K_V] > 'ย'
++ [K_B] > 'จ'
++ [K_N] > 'ค'
++ [K_M] > U+0E35
++ [K_COMMA] > 'ด'
++ [K_PERIOD] > 'ะ'
++ [K_SLASH] > U+0E39
+
+c --- 2.2 ผังแป้นพิมพ์ Manoonchai~x (Shift Keys) ---
++ [NCAPS K_Q] > 'ฒ'
++ [NCAPS K_W] > 'ฏ'
++ [NCAPS K_E] > 'ซ'
++ [NCAPS K_R] > 'ญ'
++ [NCAPS K_T] > 'ฟ'
++ [NCAPS K_Y] > 'ฉ'
++ [NCAPS K_U] > U+0E36
++ [NCAPS K_I] > 'ธ'
++ [NCAPS K_O] > 'ฐ'
++ [NCAPS K_P] > 'ฎ'
++ [NCAPS K_LBRKT] > 'ฆ'
++ [NCAPS K_RBRKT] > U+0E4D
+
++ [NCAPS K_A] > 'ษ'
++ [NCAPS K_S] > 'ถ'
++ [NCAPS K_D] > 'แ'
++ [NCAPS K_F] > 'ช'
++ [NCAPS K_G] > 'พ'
++ [NCAPS K_H] > 'ผ'
++ [NCAPS K_J] > 'ำ'
++ [NCAPS K_K] > 'ข'
++ [NCAPS K_L] > 'โ'
++ [NCAPS K_COLON] > 'ภ'
++ [NCAPS K_QUOTE] > 'ฑ'
++ [NCAPS K_BKSLASH] > U+0E3A
+
++ [NCAPS K_Z] > 'ฤ'
++ [NCAPS K_X] > 'ฝ'
++ [NCAPS K_C] > 'ๆ'
++ [NCAPS K_V] > 'ณ'
++ [NCAPS K_B] > U+0E4A
++ [NCAPS K_N] > U+0E4B
++ [NCAPS K_M] > U+0E4C
++ [NCAPS K_COMMA] > 'ศ'
++ [NCAPS K_PERIOD] > 'ฮ'
++ [NCAPS K_SLASH] > 'ฌ'
+
+
+c --- 2.3 กฎการประมวลผลอัจฉริยะ (Special Rules & Auto-Correction) ---
+
+c 1. แปลง ฤ + า -> ฤๅ / ฦ + า -> ฦๅ
 U+0E24 + U+0E32 > U+0E24 U+0E45
-
-c พิมพ์ ฦ + า -> ฦๅ
 U+0E25 + U+0E32 > U+0E25 U+0E45
-
-c มีวรรณยุกต์แทรกกลาง (เช่น ฤ + ่ + า) -> ฤ่ๅ
 U+0E24 any(Tone) + U+0E32 > context(1) context(2) U+0E45
 U+0E25 any(Tone) + U+0E32 > context(1) context(2) U+0E45
-
-c พิมพ์ า ซ้ำหลัง ๅ (เช่น ฤๅ + า) -> ฤๅๅๅ
 U+0E45 + U+0E32 > U+0E45 U+0E45
 
-
-c =====================================================================
-c RULE SET 2: กฎจัดการสระหน้า (Leading Vowel Rules)
-c =====================================================================
-
-c พิมพ์ เ + เ -> แ อัตโนมัติ
+c 2. สระหน้า เ + เ -> แ
 U+0E40 + U+0E40 > U+0E41
 
-
-c =====================================================================
-c RULE SET 3: กฎการป้องกันการพิมพ์ผิดลำดับ และการพิมพ์ซ้ำซ้อน (Constraints)
-c =====================================================================
-
-c --- 3.1 บล็อกไม่ให้พิมพ์ สระ/วรรณยุกต์/การันต์ ต่อท้ายเครื่องหมายพิเศษ ---
+c 3. บล็อกการพิมพ์ผิดลำดับ / พิมพ์ซ้ำ
 any(SpecialPunctuation) + any(AllDiacritics) > context
-
-c --- 3.2 บล็อกการพิมพ์สระบน/สระล่าง/วรรณยุกต์ ซ้ำชนิดเดียวกัน ---
 any(UpperVowel) + any(UpperVowel) > context
 any(LowerVowel) + any(LowerVowel) > context
 any(Tone) + any(Tone) > context
-U+0E4C + U+0E4C > context                     c บล็อก การันต์ (์) ซ้ำ
-U+0E4D + U+0E4D > context                     c บล็อก นฤคหิต (ํ) ซ้ำ
-U+0E4E + U+0E4E > context                     c บล็อก ยามักการ (๎) ซ้ำ
+U+0E4C + U+0E4C > context
+U+0E4D + U+0E4D > context
+U+0E4E + U+0E4E > context
 
-c --- 3.3 สลับลำดับอักขระให้อัตโนมัติเมื่อผู้ใช้พิมพ์ผิดลำดับ ---
+c 4. สลับลำดับอักขระให้อัตโนมัติเมื่อพิมพ์ผิดลำดับ
 any(Consonant) any(Tone) + any(UpperVowel) > context(1) index(UpperVowel, 3) context(2)
 any(Consonant) any(Tone) + any(LowerVowel) > context(1) index(LowerVowel, 3) context(2)
 any(Consonant) U+0E4C + any(UpperVowel) > context(1) index(UpperVowel, 3) U+0E4C
 
-
-c =====================================================================
-c RULE SET 4: กฎการพิมพ์สระอำ (Sra Am Rules)
-c =====================================================================
-
+c 5. จัดการสระอำ
 U+0E32 + U+0E4D > U+0E33
 U+0E4D + U+0E32 > U+0E33
 any(Consonant) any(Tone) U+0E32 + U+0E4D > context(1) U+0E33 context(2)
 any(Consonant) any(Tone) U+0E4D + U+0E32 > context(1) U+0E33 context(2)
 
-
-c =====================================================================
-c RULE SET 5: กฎการกดลบถอยหลัง (Backspace Rules - LIFO Compliance)
-c =====================================================================
-
+c 6. การกดลบถอยหลัง (Backspace Rules)
 U+0E41 + [K_BKSP] > U+0E40
-
 any(Consonant) U+0E33 + [K_BKSP] > context(1) U+0E32
 any(Consonant) any(Tone) U+0E33 + [K_BKSP] > context(1) U+0E33
-
 any(Consonant) any(UpperVowel) any(Tone) + [K_BKSP] > context(1) context(2)
 any(Consonant) any(LowerVowel) any(Tone) + [K_BKSP] > context(1) context(2)
-
 any(Consonant) any(UpperVowel) + [K_BKSP] > context(1)
 any(Consonant) any(LowerVowel) + [K_BKSP] > context(1)
