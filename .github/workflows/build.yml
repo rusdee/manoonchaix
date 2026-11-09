@@ -20,14 +20,17 @@ jobs:
       - name: Install Keyman Compiler
         run: npm install -g @keymanapp/kmc
 
-      - name: Build KMP Package
+      - name: Build Keyboard
         run: |
           KMN_FILE=$(ls *.kmn | head -n 1)
           echo "Building file: $KMN_FILE"
           kmc build "$KMN_FILE"
 
-      - name: Upload KMP Artifact
+      - name: Upload Keyboard Artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: ManoonchaiX-kmp
-          path: "*.kmp"
+          name: ManoonchaiX-Keyboard
+          path: |
+            *.kmx
+            *.kmp
+            *.js
